@@ -1,3 +1,15 @@
+# react-lib-boilerplate
+
+react-lib-boilerplate
+
+## start 
+
+```shell
+npm i antd-virtual-select
+
+# import SuperSelect from 'antd-virtual-select';
+```
+
 ## Feature
 
 - Support tens of thousands of data scrolling smoothly
