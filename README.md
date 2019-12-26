@@ -1,6 +1,4 @@
-# react-lib-boilerplate
 
-react-lib-boilerplate
 
 ## start 
 
