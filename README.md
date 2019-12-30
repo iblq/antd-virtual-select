@@ -13,15 +13,20 @@ npm i antd-virtual-select
 
 - 简介
 
-antd 的 Select 组件不支持大数据量的下拉列表渲染，下拉列表数量太多会出现性能问题，
-SuperSelect 基于 antd 封装实现，替换原组件下拉列表，只渲染几十条列表数据，随下拉列表滚动动态刷新可视区列表状态，实现大数据量列表高性能渲染。
+antd 的 Select 组件不支持大数据量的下拉列表渲染，下拉列表数量太多会出现性能问题.
 
-- 特性
+SuperSelect 基于 antd 封装实现，替换原组件下拉列表，只渲染几十条列表数据，随下拉列表滚动动态刷新可视区列表状态，实现万条以上大数据量列表高性能渲染。基于 antd Select 组件，不修改组件用法。
 
-1. 基于 antd Select 组件，不修改组件用法
-2. 替换 antd Select 组件的下拉列表部分实现动态渲染列表
+-   实现方案
+    1. 使用 antd Select `dropdownRender` 方法自定义原组件下拉列表部分
+    2. 虚拟滚动渲染，只渲染可视区列表，滚动动态加载其他列表
+    3. 对自定义列表项绑定原 Select 组件的各项方法和回调函数支持
+    4. 同步使用 antd 组件下拉列表样式
+    5. 同 antd select api
 
 ## [在线地址](https://codesandbox.io/s/88vznl9lm2)
+
+> 更多 antd 长列表渲染性能问题讨论 [issue 3789](https://github.com/ant-design/ant-design/issues/3789)
 
 ## 使用
 
