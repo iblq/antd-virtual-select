@@ -56,10 +56,11 @@ var ITEM_HEIGHT_CFG = {
   "default": 32
 };
 var ARROW_CODE = {
-  40: 'down',
-  38: 'up'
+  40: "down",
+  38: "up"
 };
 var DROPDOWN_HEIGHT = 224;
+var Option = _antd.Select.Option;
 
 var SuperSelect =
 /*#__PURE__*/
@@ -89,9 +90,9 @@ function (_PureComponent) {
 
     _defineProperty(_assertThisInitialized(_this), "getItemStyle", function (i) {
       return {
-        position: 'absolute',
+        position: "absolute",
         top: _this.ITEM_HEIGHT * i,
-        width: '100%',
+        width: "100%",
         height: _this.ITEM_HEIGHT
       };
     });
@@ -101,12 +102,12 @@ function (_PureComponent) {
 
       if (!_this.scrollEle) return;
 
-      _this.scrollEle.addEventListener('scroll', _this.onScroll, false);
+      _this.scrollEle.addEventListener("scroll", _this.onScroll, false);
 
       _this.inputEle = document.querySelector("#".concat(_this.id));
       if (!_this.inputEle) return;
 
-      _this.inputEle.addEventListener('keydown', _this.onKeyDown, false);
+      _this.inputEle.addEventListener("keydown", _this.onKeyDown, false);
     });
 
     _defineProperty(_assertThisInitialized(_this), "onKeyDown", function (e) {
@@ -117,8 +118,8 @@ function (_PureComponent) {
         var activeItem = document.querySelector(".".concat(_this.dropdownClassName, " .ant-select-dropdown-menu-item-active"));
         if (!activeItem) return;
         var offsetTop = activeItem.offsetTop;
-        var isUp = ARROW_CODE[keyCode] === 'up';
-        var isDown = ARROW_CODE[keyCode] === 'down'; // 在所有列表第一行按上键
+        var isUp = ARROW_CODE[keyCode] === "up";
+        var isDown = ARROW_CODE[keyCode] === "down"; // 在所有列表第一行按上键
 
         if (offsetTop - _this.prevTop > DROPDOWN_HEIGHT && isUp) {
           _this.scrollEle.scrollTo(0, _this.allHeight - DROPDOWN_HEIGHT);
@@ -210,11 +211,12 @@ function (_PureComponent) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "onDeselect", function (value) {
+      var onDeselect = _this.props.onDeselect;
+      onDeselect && onDeselect(value);
+    });
+
     _defineProperty(_assertThisInitialized(_this), "onChange", function (value, opt) {
-      // // 删除选中项时保持展开下拉列表状态
-      // if (Array.isArray(value) && value.length < this.state.value.length) {
-      //   this.focusSelect();
-      // }
       var _this$props = _this.props,
           showSearch = _this$props.showSearch,
           onChange = _this$props.onChange,
@@ -250,7 +252,7 @@ function (_PureComponent) {
         // 须根据 filterOption（如有该自定义函数）手动 filter 搜索匹配的列表
         var filterChildren = null;
 
-        if (typeof filterOption === 'function') {
+        if (typeof filterOption === "function") {
           filterChildren = children.filter(function (item) {
             return filterOption(v, item);
           });
@@ -262,7 +264,7 @@ function (_PureComponent) {
 
 
         _this.setState({
-          filterChildren: v === '' ? null : filterChildren
+          filterChildren: v === "" ? null : filterChildren
         }, function () {
           // 搜索成功后需要重新设置列表的总高度
           _this.setSuperDrowDownMenu(true);
@@ -274,26 +276,26 @@ function (_PureComponent) {
 
     _defineProperty(_assertThisInitialized(_this), "filterOption", function (v, option) {
       // 自定义过滤对应的 option 属性配置
-      var filterProps = _this.props.optionFilterProp || 'value';
+      var filterProps = _this.props.optionFilterProp || "value";
       return "".concat(option.props[filterProps]).indexOf(v) >= 0;
     });
 
     _defineProperty(_assertThisInitialized(_this), "removeEvent", function () {
       if (!_this.scrollEle) return;
 
-      _this.scrollEle.removeEventListener('scroll', _this.onScroll, false);
+      _this.scrollEle.removeEventListener("scroll", _this.onScroll, false);
 
       if (!_this.inputEle) return;
 
-      _this.inputEle.removeEventListener('keydown', _this.onKeyDown, false);
+      _this.inputEle.removeEventListener("keydown", _this.onKeyDown, false);
     });
 
     var mode = props.mode,
         defaultValue = props.defaultValue,
         _value = props.value;
-    _this.isMultiple = ['tags', 'multiple'].includes(mode); // 设置默认 value
+    _this.isMultiple = ["tags", "multiple"].includes(mode); // 设置默认 value
 
-    var defaultV = _this.isMultiple ? [] : '';
+    var defaultV = _this.isMultiple ? [] : "";
     defaultV = _value || defaultValue || defaultV;
     _this.state = {
       children: props.children || [],
@@ -301,7 +303,7 @@ function (_PureComponent) {
       value: defaultV
     }; // 下拉菜单项行高
 
-    _this.ITEM_HEIGHT = ITEM_HEIGHT_CFG[props.size || 'default']; // 可视区 dom 高度
+    _this.ITEM_HEIGHT = ITEM_HEIGHT_CFG[props.size || "default"]; // 可视区 dom 高度
 
     _this.visibleDomHeight = _this.ITEM_HEIGHT * ITEM_ELEMENT_NUMBER; // 滚动时重新渲染的 scrollTop 判断值，大于 reactDelta 则刷新下拉列表
 
@@ -341,7 +343,7 @@ function (_PureComponent) {
           children = _this$props3.children;
 
       if (prevProps.children !== children) {
-        this.isMultiple = ['tags', 'multiple'].includes(mode);
+        this.isMultiple = ["tags", "multiple"].includes(mode);
         this.setState({
           children: children || [],
           filterChildren: null
@@ -350,7 +352,7 @@ function (_PureComponent) {
 
       if (prevProps.value !== value) {
         // 更新时设置默认 value
-        var defaultV = this.isMultiple ? [] : '';
+        var defaultV = this.isMultiple ? [] : "";
         defaultV = value || defaultValue || defaultV;
         this.setState({
           value: defaultV
@@ -386,8 +388,8 @@ function (_PureComponent) {
       dropdownStyle = _objectSpread({
         maxHeight: "".concat(DROPDOWN_HEIGHT, "px")
       }, dropdownStyle, {
-        overflow: 'auto',
-        position: 'relative'
+        overflow: "auto",
+        position: "relative"
       });
       var value = this.state.value; // 判断处于 antd Form 中时不自动设置 value
 
@@ -396,13 +398,13 @@ function (_PureComponent) {
 
       delete _props.value; // value 为空字符会隐藏 placeholder，改为 undefined
 
-      if (typeof value === 'string' && !value) {
+      if (typeof value === "string" && !value) {
         _props.value = undefined;
       } else {
         _props.value = value;
       }
 
-      optionLabelProp = optionLabelProp || 'children';
+      optionLabelProp = optionLabelProp || "children";
       return _react["default"].createElement(_antd.Select, _extends({}, _props, {
         id: this.id,
         onSearch: this.onSearch,
@@ -411,6 +413,7 @@ function (_PureComponent) {
         optionLabelProp: optionLabelProp,
         dropdownStyle: dropdownStyle,
         onDropdownVisibleChange: this.setSuperDrowDownMenu,
+        onDeselect: this.onDeselect,
         ref: function ref(ele) {
           return _this4.select = ele;
         },
@@ -434,4 +437,6 @@ function (_PureComponent) {
   return SuperSelect;
 }(_react.PureComponent);
 
-exports["default"] = SuperSelect;
+SuperSelect.Option = Option;
+var _default = SuperSelect;
+exports["default"] = _default;
