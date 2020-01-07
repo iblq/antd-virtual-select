@@ -1,0 +1,6 @@
+{
+  "name": "blq-test/utils",
+  "private": true,
+  "main": "../lib/utils.js",
+  "module": "../es/utils.js"
+}

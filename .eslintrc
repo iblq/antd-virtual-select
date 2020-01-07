@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["@doddle/eslint-config-doddle"],
+  "rules": {
+  },
+  "globals": {
+    "Image": true,
+    "FileReader": true,
+    "document": true,
+    "window": true
+  }
+}
