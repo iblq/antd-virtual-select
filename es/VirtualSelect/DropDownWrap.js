@@ -50,10 +50,10 @@ function (_PureComponent) {
     _defineProperty(_assertThisInitialized(_this), "getItemStyle", function (i) {
       var itemHeight = _this.props.itemHeight;
       return {
-        position: "absolute",
+        position: 'absolute',
         top: itemHeight * i,
         height: itemHeight,
-        width: "100%"
+        width: '100%'
       };
     });
 
@@ -94,7 +94,7 @@ function (_PureComponent) {
           var style = _this2.getItemStyle(realIndex); // 未搜到数据提示高度使用默认高度
 
 
-          if (item.key === "NOT_FOUND") {
+          if (item.key === 'NOT_FOUND') {
             delete style.height;
           }
 
@@ -105,7 +105,7 @@ function (_PureComponent) {
         dropdownMenuStyle: _objectSpread({}, menu.props.dropdownMenuStyle, {
           height: allHeight,
           maxHeight: allHeight,
-          overflow: "hidden"
+          overflow: 'hidden'
         })
       });
 
