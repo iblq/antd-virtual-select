@@ -1,21 +1,21 @@
-const path = require("path");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: "./packages/index.js"
+    index: './packages/index.js',
     // utils: "./packages/utils/index"
   },
-  devtool: "none",
-  mode: "production",
+  devtool: 'none',
+  mode: 'production',
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "./dist"),
-    library: "blq-test",
-    libraryTarget: "umd",
-    sourceMapFilename: "[file].map" // string
+    filename: '[name].js',
+    path: path.resolve(__dirname, './dist'),
+    library: 'blq-test',
+    libraryTarget: 'umd',
+    sourceMapFilename: '[file].map', // string
   },
   /*   optimization: {
     sideEffects: false,
@@ -28,75 +28,75 @@ module.exports = {
   }, */
   externals: {
     react: {
-      commonjs: "react",
-      commonjs2: "react",
-      amd: "react"
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
     },
     antd: {
-      commonjs: "antd",
-      commonjs2: "antd",
-      amd: "antd"
+      commonjs: 'antd',
+      commonjs2: 'antd',
+      amd: 'antd',
     },
     moment: {
-      commonjs: "moment",
-      commonjs2: "moment",
-      amd: "moment"
+      commonjs: 'moment',
+      commonjs2: 'moment',
+      amd: 'moment',
     },
     dva: {
-      commonjs: "dva",
-      commonjs2: "dva",
-      amd: "dva"
+      commonjs: 'dva',
+      commonjs2: 'dva',
+      amd: 'dva',
     },
-    "react-transition-group": {
-      commonjs: "react-transition-group",
-      commonjs2: "react-transition-group",
-      amd: "react-transition-group"
-    }
+    'react-transition-group': {
+      commonjs: 'react-transition-group',
+      commonjs2: 'react-transition-group',
+      amd: 'react-transition-group',
+    },
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".tsx", ".ts", ".js", "jsx"]
+    extensions: ['.tsx', '.ts', '.js', 'jsx'],
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: "ts-loader"
+        loader: 'ts-loader',
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         query: {
-          presets: ["@babel/preset-env", "@babel/preset-react"]
-        }
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
-          limit: 10000
-        }
+          limit: 10000,
+        },
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "style-loader", "css-loader"]
+        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
-      }
-    ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+      },
+    ],
   },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
-      filename: "./index.css" // 文件目录会放入output.path里
-    })
-  ]
+      filename: './index.css', // 文件目录会放入output.path里
+    }),
+  ],
 };

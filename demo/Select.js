@@ -1,29 +1,29 @@
-import React from "react";
-import SuperSelect from "../packages/VirtualSelect";
+import React from 'react';
+import SuperSelect from '../packages/VirtualSelect';
 
-const Option = SuperSelect.Option;
+const { Option } = SuperSelect;
 
 const children = [];
 
 for (let i = 0; i < 10000; i++) {
   children.push(
-    <Option value={i + "aa"} key={i}>
+    <Option value={`${i}aa`} key={i}>
       {i}
-    </Option>
+    </Option>,
   );
 }
 
 class App extends React.Component {
-  onChange = v => {
-    console.log(v, "onChange");
+  onChange = (v) => {
+    console.log(v, 'onChange');
   };
 
-  onSearch = v => console.log(v);
+  onSearch = (v) => console.log(v);
 
   render() {
     return (
       <div>
-        <div style={{ width: "300px" }}>
+        <div style={{ width: '300px' }}>
           superSelect: 所有用法同 antd 原 Select, 只是替换 Select 为 SuperSelect
           <SuperSelect
             showSearch
@@ -31,8 +31,8 @@ class App extends React.Component {
             open
             onChange={this.onChange}
             onSearch={this.onSearch}
-            style={{ width: "300px" }}
-            getPopupContainer={target => target.parentNode}
+            style={{ width: '300px' }}
+            getPopupContainer={(target) => target.parentNode}
           >
             {children}
           </SuperSelect>

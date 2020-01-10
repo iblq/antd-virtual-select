@@ -1,7 +1,8 @@
+/* eslint-disable prefer-const */
 /* eslint-disable react/destructuring-assignment */
-import React, { PureComponent } from "react";
-import { Select } from "antd";
-import DropDownWrap from "./DropDownWrap";
+import React, { PureComponent } from 'react';
+import { Select } from 'antd';
+import DropDownWrap from './DropDownWrap';
 
 // 页面实际渲染的下拉菜单数量，实际为 2 * ITEM_ELEMENT_NUMBER
 const ITEM_ELEMENT_NUMBER = 30;
@@ -9,36 +10,36 @@ const ITEM_ELEMENT_NUMBER = 30;
 const ITEM_HEIGHT_CFG = {
   small: 24,
   large: 40,
-  default: 32
+  default: 32,
 };
 
 const ARROW_CODE = {
-  40: "down",
-  38: "up"
+  40: 'down',
+  38: 'up',
 };
 
 const DROPDOWN_HEIGHT = 224;
 
-const Option = Select.Option;
+const { Option } = Select;
 
 class SuperSelect extends PureComponent {
   constructor(props) {
     super(props);
 
     const { mode, defaultValue, value } = props;
-    this.isMultiple = ["tags", "multiple"].includes(mode);
+    this.isMultiple = ['tags', 'multiple'].includes(mode);
 
     // 设置默认 value
-    let defaultV = this.isMultiple ? [] : "";
+    let defaultV = this.isMultiple ? [] : '';
     defaultV = value || defaultValue || defaultV;
 
     this.state = {
       children: props.children || [],
       filterChildren: null,
-      value: defaultV
+      value: defaultV,
     };
     // 下拉菜单项行高
-    this.ITEM_HEIGHT = ITEM_HEIGHT_CFG[props.size || "default"];
+    this.ITEM_HEIGHT = ITEM_HEIGHT_CFG[props.size || 'default'];
     // 可视区 dom 高度
     this.visibleDomHeight = this.ITEM_HEIGHT * ITEM_ELEMENT_NUMBER;
     // 滚动时重新渲染的 scrollTop 判断值，大于 reactDelta 则刷新下拉列表
@@ -68,16 +69,16 @@ class SuperSelect extends PureComponent {
   componentDidUpdate(prevProps) {
     const { mode, defaultValue, value, children } = this.props;
     if (prevProps.children !== children) {
-      this.isMultiple = ["tags", "multiple"].includes(mode);
+      this.isMultiple = ['tags', 'multiple'].includes(mode);
 
       this.setState({
         children: children || [],
-        filterChildren: null
+        filterChildren: null,
       });
     }
     if (prevProps.value !== value) {
       // 更新时设置默认 value
-      let defaultV = this.isMultiple ? [] : "";
+      let defaultV = this.isMultiple ? [] : '';
       defaultV = value || defaultValue || defaultV;
       this.setState({ value: defaultV }, () => {
         this.scrollToValue();
@@ -94,7 +95,7 @@ class SuperSelect extends PureComponent {
     if (!this.scrollEle) return;
     const { children } = this.props;
     const { value } = this.state;
-    const index = children.findIndex(item => item.key === value) || 0;
+    const index = children.findIndex((item) => item.key === value) || 0;
 
     const y = this.ITEM_HEIGHT * index;
     this.scrollEle.scrollTop = y;
@@ -103,11 +104,11 @@ class SuperSelect extends PureComponent {
     }, 0);
   };
 
-  getItemStyle = i => ({
-    position: "absolute",
+  getItemStyle = (i) => ({
+    position: 'absolute',
     top: this.ITEM_HEIGHT * i,
-    width: "100%",
-    height: this.ITEM_HEIGHT
+    width: '100%',
+    height: this.ITEM_HEIGHT,
   });
 
   addEvent = () => {
@@ -115,26 +116,26 @@ class SuperSelect extends PureComponent {
     // 下拉菜单未展开时元素不存在
     if (!this.scrollEle) return;
 
-    this.scrollEle.addEventListener("scroll", this.onScroll, false);
+    this.scrollEle.addEventListener('scroll', this.onScroll, false);
     this.inputEle = document.querySelector(`#${this.id}`);
 
     if (!this.inputEle) return;
-    this.inputEle.addEventListener("keydown", this.onKeyDown, false);
+    this.inputEle.addEventListener('keydown', this.onKeyDown, false);
   };
 
   // 模拟 antd select 按下 上下箭头 键时滚动列表
-  onKeyDown = e => {
+  onKeyDown = (e) => {
     const { keyCode } = e || {};
 
     setTimeout(() => {
       const activeItem = document.querySelector(
-        `.${this.dropdownClassName} .ant-select-dropdown-menu-item-active`
+        `.${this.dropdownClassName} .ant-select-dropdown-menu-item-active`,
       );
       if (!activeItem) return;
 
       const { offsetTop } = activeItem;
-      const isUp = ARROW_CODE[keyCode] === "up";
-      const isDown = ARROW_CODE[keyCode] === "down";
+      const isUp = ARROW_CODE[keyCode] === 'up';
+      const isDown = ARROW_CODE[keyCode] === 'down';
 
       // 在所有列表第一行按上键
       if (offsetTop - this.prevTop > DROPDOWN_HEIGHT && isUp) {
@@ -155,8 +156,7 @@ class SuperSelect extends PureComponent {
       this.prevTop = offsetTop;
       // 向下滚动到下拉框最后一行时，向下滚动一行的高度
       if (
-        offsetTop >
-          this.scrollEle.scrollTop + DROPDOWN_HEIGHT - this.ITEM_HEIGHT + 10 &&
+        offsetTop > this.scrollEle.scrollTop + DROPDOWN_HEIGHT - this.ITEM_HEIGHT + 10 &&
         isDown
       ) {
         this.scrollEle.scrollTo(0, this.scrollTop + this.ITEM_HEIGHT);
@@ -198,15 +198,13 @@ class SuperSelect extends PureComponent {
     const showIndex = Number((this.scrollTop / this.ITEM_HEIGHT).toFixed(0));
 
     const startIndex =
-      showIndex - ITEM_ELEMENT_NUMBER < 0
-        ? 0
-        : showIndex - ITEM_ELEMENT_NUMBER / 2;
+      showIndex - ITEM_ELEMENT_NUMBER < 0 ? 0 : showIndex - ITEM_ELEMENT_NUMBER / 2;
     const endIndex = showIndex + ITEM_ELEMENT_NUMBER;
     return { startIndex, endIndex };
   };
 
   // 须使用 setTimeout 确保在 dom 加载完成之后添加事件
-  setSuperDrowDownMenu = visible => {
+  setSuperDrowDownMenu = (visible) => {
     if (!visible) return;
 
     this.allList = this.getUseChildrenList();
@@ -221,7 +219,7 @@ class SuperSelect extends PureComponent {
     }
   };
 
-  onDeselect = value => {
+  onDeselect = (value) => {
     const { onDeselect } = this.props;
     onDeselect && onDeselect(value);
   };
@@ -243,50 +241,42 @@ class SuperSelect extends PureComponent {
     onChange && onChange(value, opt);
   };
 
-  onSearch = v => {
+  onSearch = (v) => {
     const { showSearch, onSearch, filterOption, children } = this.props;
 
     if (showSearch && filterOption !== false) {
       // 须根据 filterOption（如有该自定义函数）手动 filter 搜索匹配的列表
       let filterChildren = null;
-      if (typeof filterOption === "function") {
-        filterChildren = children.filter(item => filterOption(v, item));
+      if (typeof filterOption === 'function') {
+        filterChildren = children.filter((item) => filterOption(v, item));
       } else if (filterOption === undefined) {
-        filterChildren = children.filter(item => this.filterOption(v, item));
+        filterChildren = children.filter((item) => this.filterOption(v, item));
       }
 
       // 设置下拉列表显示数据
-      this.setState(
-        { filterChildren: v === "" ? null : filterChildren },
-        () => {
-          // 搜索成功后需要重新设置列表的总高度
-          this.setSuperDrowDownMenu(true);
-        }
-      );
+      this.setState({ filterChildren: v === '' ? null : filterChildren }, () => {
+        // 搜索成功后需要重新设置列表的总高度
+        this.setSuperDrowDownMenu(true);
+      });
     }
     onSearch && onSearch(v);
   };
 
   filterOption = (v, option) => {
     // 自定义过滤对应的 option 属性配置
-    const filterProps = this.props.optionFilterProp || "value";
+    const filterProps = this.props.optionFilterProp || 'value';
     return `${option.props[filterProps]}`.indexOf(v) >= 0;
   };
 
   removeEvent = () => {
     if (!this.scrollEle) return;
-    this.scrollEle.removeEventListener("scroll", this.onScroll, false);
+    this.scrollEle.removeEventListener('scroll', this.onScroll, false);
     if (!this.inputEle) return;
-    this.inputEle.removeEventListener("keydown", this.onKeyDown, false);
+    this.inputEle.removeEventListener('keydown', this.onKeyDown, false);
   };
 
   render() {
-    let {
-      dropdownStyle,
-      optionLabelProp,
-      notFoundContent,
-      ...props
-    } = this.props;
+    let { dropdownStyle, optionLabelProp, notFoundContent, ...props } = this.props;
 
     this.allList = this.getUseChildrenList();
 
@@ -296,8 +286,8 @@ class SuperSelect extends PureComponent {
     dropdownStyle = {
       maxHeight: `${DROPDOWN_HEIGHT}px`,
       ...dropdownStyle,
-      overflow: "auto",
-      position: "relative"
+      overflow: 'auto',
+      position: 'relative',
     };
 
     const { value } = this.state;
@@ -307,13 +297,13 @@ class SuperSelect extends PureComponent {
     delete _props.value;
 
     // value 为空字符会隐藏 placeholder，改为 undefined
-    if (typeof value === "string" && !value) {
+    if (typeof value === 'string' && !value) {
       _props.value = undefined;
     } else {
       _props.value = value;
     }
 
-    optionLabelProp = optionLabelProp || "children";
+    optionLabelProp = optionLabelProp || 'children';
 
     return (
       <Select
@@ -326,17 +316,21 @@ class SuperSelect extends PureComponent {
         dropdownStyle={dropdownStyle}
         onDropdownVisibleChange={this.setSuperDrowDownMenu}
         onDeselect={this.onDeselect}
-        ref={ele => (this.select = ele)}
-        dropdownRender={menu => (
+        ref={(ele) => {
+          this.select = ele;
+        }}
+        dropdownRender={(menu) => (
           <DropDownWrap
             {...{
               startIndex,
               endIndex,
               allHeight: this.allHeight,
               menu,
-              itemHeight: this.ITEM_HEIGHT
+              itemHeight: this.ITEM_HEIGHT,
             }}
-            ref={ele => (this.wrap = ele)}
+            ref={(ele) => {
+              this.wrap = ele;
+            }}
           />
         )}
       >

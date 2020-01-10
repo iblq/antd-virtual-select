@@ -1,17 +1,17 @@
-import { mount, shallow } from "enzyme";
+import { mount, shallow } from 'enzyme';
 
-import Lib from "../lib";
-import SelectDemo from "../demo/Select";
+import Lib from '../lib';
+import SelectDemo from '../demo/Select';
 
-let wrappedComponent = <SelectDemo />;
+const wrappedComponent = <SelectDemo />;
 
-test("lib", () => {
+test('lib', () => {
   const wrapper = mount(<Lib />);
 
   expect(wrapper.html()).toBeTruthy();
 });
 
-test("should render correctly", () => {
+test('should render correctly', () => {
   const wrapper = mount(wrappedComponent);
   expect(wrapper.html()).toBeTruthy();
 });

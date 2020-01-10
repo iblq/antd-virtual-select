@@ -6,4 +6,3 @@ es/*
 dist/*
 build/*
 tsconfig.json
-test/*
