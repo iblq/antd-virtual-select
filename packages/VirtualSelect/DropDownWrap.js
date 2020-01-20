@@ -42,7 +42,7 @@ export default class DropDownWrap extends PureComponent {
             delete style.height;
           }
           return React.cloneElement(item, {
-            style: { ...item.style, ...style }
+            style: { ...item.props.style, ...style }
           });
         }),
       dropdownMenuStyle: {
