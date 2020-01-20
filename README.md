@@ -1,9 +1,11 @@
-## 开始
+<!-- ## 开始
 
 ```shell
 npm i antd-virtual-select
 
-```
+# 私有库
+npm i @nuo-common/cloudjz-virtual-select
+``` -->
 
 ## 功能特性
 
@@ -51,6 +53,7 @@ const Example = () => {
 };
 ```
 
+<!--
 ## Feature
 
 - Support tens of thousands of data scrolling smoothly
@@ -64,7 +67,7 @@ const Example = () => {
 - Calculate the scrolling distance of the list, re-render when scrolling about the height of the visible area, reduce the number of renderings and improve performance
 - Represents methods such as antd Select onChange to implement the same api usage and callback parameter return
 
-> [demo](https://codesandbox.io/s/88vznl9lm2)
+> [demo](https://codesandbox.io/s/88vznl9lm2) -->
 
 ## Change Log
 

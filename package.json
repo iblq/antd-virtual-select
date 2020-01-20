@@ -1,7 +1,7 @@
 {
   "name": "antd-virtual-select",
-  "version": "1.0.1",
-  "description": "Long list optimization antd select component",
+  "version": "1.0.2",
+  "description": "基于 antd Select 组件封装支持万条数据流畅渲染的 Select 组件",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -12,7 +12,8 @@
     "lib": "gulp lib",
     "es": "gulp es",
     "test": "jest .",
-    "propub": "gulp && webpack --config webpack.config.js && npm run test"
+    "propub": "gulp && webpack --config webpack.config.js && npm run test",
+    "publish": "nuo publish"
   },
   "files": [
     "es",
@@ -39,9 +40,7 @@
   "author": {
     "name": "baolq"
   },
-  "dependencies": {
-    "moment": "^2.22.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
@@ -63,7 +62,6 @@
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.9",
     "del": "^3.0.0",
-    "dva": "^2.4.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "file-loader": "^2.0.0",
