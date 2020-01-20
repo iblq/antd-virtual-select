@@ -99,7 +99,7 @@ function (_PureComponent) {
           }
 
           return _react["default"].cloneElement(item, {
-            style: _objectSpread({}, item.style, {}, style)
+            style: _objectSpread({}, item.props.style, {}, style)
           });
         }),
         dropdownMenuStyle: _objectSpread({}, menu.props.dropdownMenuStyle, {

@@ -77,3 +77,8 @@ const Example = () => {
 
 - feat:
   1. readme 修改，删除无用依赖
+
+### 2020-01-20
+
+- fix:
+  1. 修复 Option 组件添加 style={xxx} 样式无效问题

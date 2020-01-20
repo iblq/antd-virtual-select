@@ -1,6 +1,6 @@
 {
   "name": "antd-virtual-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Long list optimization antd select component",
   "license": "ISC",
   "main": "lib/index.js",
@@ -11,8 +11,8 @@
     "build": "webpack --config webpack.config.js",
     "lib": "gulp lib",
     "es": "gulp es",
-    "propub": "npm run test && gulp && webpack --config webpack.config.js",
-    "test": "jest ."
+    "test": "jest .",
+    "propub": "gulp && webpack --config webpack.config.js && npm run test"
   },
   "files": [
     "es",
