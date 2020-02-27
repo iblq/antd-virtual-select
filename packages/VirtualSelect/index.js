@@ -207,6 +207,9 @@ class SuperSelect extends PureComponent {
 
   // 须使用 setTimeout 确保在 dom 加载完成之后添加事件
   setSuperDrowDownMenu = visible => {
+    const { onDropdownVisibleChange } = this.props;
+    onDropdownVisibleChange && onDropdownVisibleChange(visible);
+
     if (!visible) return;
 
     this.allList = this.getUseChildrenList();
