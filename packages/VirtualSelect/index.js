@@ -207,9 +207,6 @@ class SuperSelect extends PureComponent {
 
   // 须使用 setTimeout 确保在 dom 加载完成之后添加事件
   setSuperDrowDownMenu = visible => {
-    const { onDropdownVisibleChange } = this.props;
-    onDropdownVisibleChange && onDropdownVisibleChange(visible);
-
     if (!visible) return;
 
     this.allList = this.getUseChildrenList();
@@ -223,6 +220,12 @@ class SuperSelect extends PureComponent {
       this.wrap && this.wrap.reactList(allHeight, startIndex, endIndex);
     }
   };
+
+  onDropdownVisibleChange = (visible) => {
+    const { onDropdownVisibleChange } = this.props;
+    onDropdownVisibleChange && onDropdownVisibleChange(visible);
+    setSuperDrowDownMenu(visible);
+  }
 
   onDeselect = value => {
     const { onDeselect } = this.props;
@@ -327,7 +330,7 @@ class SuperSelect extends PureComponent {
         dropdownClassName={this.dropdownClassName}
         optionLabelProp={optionLabelProp}
         dropdownStyle={dropdownStyle}
-        onDropdownVisibleChange={this.setSuperDrowDownMenu}
+        onDropdownVisibleChange={this.onDropdownVisibleChange}
         onDeselect={this.onDeselect}
         ref={ele => (this.select = ele)}
         dropdownRender={menu => (
