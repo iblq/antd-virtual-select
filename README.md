@@ -17,6 +17,8 @@ npm i antd-virtual-select
 
 > 更多 antd 长列表渲染性能问题讨论可查看 [antd 官方 issue 3789](https://github.com/ant-design/ant-design/issues/3789)
 
+> antd 4.0 Select 组件已支持虚拟列表（ie11+），此组件基于 antd 3.x，可用于 ie9 浏览器
+
 ## 使用
 
 基本使用同 antd Select，只是使用 SuperSelect 代替 Select
@@ -82,3 +84,9 @@ const Example = () => {
 
 - fix:
   1. 修复 Option 组件添加 style={xxx} 样式无效问题
+
+### 2020-03-02
+
+- fix:
+  1. 修复异步加载数据时下拉列表高度固定 100px 问题
+  2. onDropdownVisibleChange 回调函数未触发问题
