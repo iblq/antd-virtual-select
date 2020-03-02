@@ -211,6 +211,12 @@ function (_PureComponent) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "onDropdownVisibleChange", function (visible) {
+      var onDropdownVisibleChange = _this.props.onDropdownVisibleChange;
+      onDropdownVisibleChange && onDropdownVisibleChange(visible);
+      setSuperDrowDownMenu(visible);
+    });
+
     _defineProperty(_assertThisInitialized(_this), "onDeselect", function (value) {
       var onDeselect = _this.props.onDeselect;
       onDeselect && onDeselect(value);
@@ -412,7 +418,7 @@ function (_PureComponent) {
         dropdownClassName: this.dropdownClassName,
         optionLabelProp: optionLabelProp,
         dropdownStyle: dropdownStyle,
-        onDropdownVisibleChange: this.setSuperDrowDownMenu,
+        onDropdownVisibleChange: this.onDropdownVisibleChange,
         onDeselect: this.onDeselect,
         ref: function ref(ele) {
           return _this4.select = ele;

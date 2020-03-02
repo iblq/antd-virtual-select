@@ -221,6 +221,12 @@ class SuperSelect extends PureComponent {
     }
   };
 
+  onDropdownVisibleChange = visible => {
+    const { onDropdownVisibleChange } = this.props;
+    onDropdownVisibleChange && onDropdownVisibleChange(visible);
+    setSuperDrowDownMenu(visible);
+  };
+
   onDeselect = value => {
     const { onDeselect } = this.props;
     onDeselect && onDeselect(value);
@@ -324,7 +330,7 @@ class SuperSelect extends PureComponent {
         dropdownClassName={this.dropdownClassName}
         optionLabelProp={optionLabelProp}
         dropdownStyle={dropdownStyle}
-        onDropdownVisibleChange={this.setSuperDrowDownMenu}
+        onDropdownVisibleChange={this.onDropdownVisibleChange}
         onDeselect={this.onDeselect}
         ref={ele => (this.select = ele)}
         dropdownRender={menu => (

@@ -12,6 +12,12 @@ export default class DropDownWrap extends PureComponent {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.allHeight !== prevProps.allHeight) {
+      this.setState({ allHeight: this.props.allHeight });
+    }
+  }
+
   getItemStyle = i => {
     const { itemHeight } = this.props;
     return {

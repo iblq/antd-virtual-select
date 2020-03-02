@@ -1,12 +1,3 @@
-<!-- ## 开始
-
-```shell
-npm i antd-virtual-select
-
-# 私有库
-npm i @nuo-common/cloudjz-virtual-select
-``` -->
-
 ## 功能特性
 
 1. 使用 antd Select `dropdownRender` 方法自定义原组件下拉列表部分
@@ -18,6 +9,8 @@ npm i @nuo-common/cloudjz-virtual-select
 ## [在线 demo](https://codesandbox.io/s/88vznl9lm2)
 
 > 更多 antd 长列表渲染性能问题讨论可查看 [antd 官方 issue 3789](https://github.com/ant-design/ant-design/issues/3789)
+
+> antd 4.0 Select 组件已支持虚拟列表（ie11+），此组件基于 antd 3.x，可用于 ie9 浏览器
 
 ## 使用
 
@@ -53,22 +46,6 @@ const Example = () => {
 };
 ```
 
-<!--
-## Feature
-
-- Support tens of thousands of data scrolling smoothly
-- Same as ant api, easy to use
-- Simple to implement, can be modified according to needs
-- Support for direct use in antd Form
-
-## Code
-
-- Use the antd Select dropdownRender method to customize the drop-down list content, rendering only about dozens of data in the viewport
-- Calculate the scrolling distance of the list, re-render when scrolling about the height of the visible area, reduce the number of renderings and improve performance
-- Represents methods such as antd Select onChange to implement the same api usage and callback parameter return
-
-> [demo](https://codesandbox.io/s/88vznl9lm2) -->
-
 ## Change Log
 
 ### 2020-01-06
@@ -85,3 +62,9 @@ const Example = () => {
 
 - fix:
   1. 修复 Option 组件添加 style={xxx} 样式无效问题
+
+### 2020-03-02
+
+- fix:
+  1. 修复异步加载数据时下拉列表高度固定 100px 问题
+  2. onDropdownVisibleChange 回调函数未触发问题

@@ -1,6 +1,6 @@
 {
   "name": "@nuo-common/cloudjz-virtual-select",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "基于 antd Select 组件封装支持万条数据流畅渲染的 Select 组件",
   "license": "ISC",
   "main": "lib/index.js",
