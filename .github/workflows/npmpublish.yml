@@ -3,10 +3,9 @@
 
 name: build & publish to npm
 
-
 on:
   push:
-    branches:    
+    branches:
       - master
 
 jobs:
@@ -18,8 +17,8 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: npm test
-      - run: npm propub
+      - run: npm run test
+      - run: npm run propub
 
   publish-npm:
     needs: build
@@ -34,5 +33,3 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
- 
