@@ -6,3 +6,6 @@ node_modules/
 .DS_Store
 package.lock
 .idea/vcs.xml
+es/
+lib/
+dist/
