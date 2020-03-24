@@ -213,8 +213,19 @@ function (_PureComponent) {
 
     _defineProperty(_assertThisInitialized(_this), "onDropdownVisibleChange", function (visible) {
       var onDropdownVisibleChange = _this.props.onDropdownVisibleChange;
-      onDropdownVisibleChange && onDropdownVisibleChange(visible);
-      setSuperDrowDownMenu(visible);
+      onDropdownVisibleChange && onDropdownVisibleChange(visible); // 关闭下拉框前清空筛选条件，防止下次打开任然显示筛选后的 options
+
+      if (!visible) {
+        // 定时器确保关闭后再设置 filterChildren,防止列表刷新闪烁
+        setTimeout(function () {
+          _this.setState({
+            filterChildren: null
+          });
+        });
+      } else {
+        // 设置下拉列表显示数据
+        _this.setSuperDrowDownMenu(visible);
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "onDeselect", function (value) {
@@ -306,6 +317,7 @@ function (_PureComponent) {
     _this.state = {
       children: props.children || [],
       filterChildren: null,
+      // 筛选后的 options，优先显示，所以清除筛选后手动设为 null
       value: defaultV
     }; // 下拉菜单项行高
 
