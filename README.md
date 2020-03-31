@@ -46,6 +46,7 @@ const Example = () => {
       // onChange={onChange}
       // onSearch={onSearch}
       // onSelect={onSelect}
+      // optionHeight={50}
     >
       {children}
     </SuperSelect>
@@ -59,6 +60,7 @@ const Example = () => {
 - Same as ant api, easy to use
 - Simple to implement, can be modified according to needs
 - Support for direct use in antd Form
+- set an `optionHeight` props to allow the height of the Option to be dynamically controlled
 
 ## Code
 
@@ -90,3 +92,8 @@ const Example = () => {
 
 - fix:
   1. 输入筛选条件直接 blur 后下拉列表没有重置为全部列表
+
+### 2020-03-31
+
+- feat:
+  1. 新增 optionHeight 属性动态设置下拉列表选项的高度

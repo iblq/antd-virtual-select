@@ -25,7 +25,8 @@ class SuperSelect extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { mode, defaultValue, value } = props;
+    const { mode, defaultValue, value, optionHeight } = props;
+
     this.isMultiple = ["tags", "multiple"].includes(mode);
 
     // 设置默认 value
@@ -37,8 +38,8 @@ class SuperSelect extends PureComponent {
       filterChildren: null, // 筛选后的 options，优先显示，所以清除筛选后手动设为 null
       value: defaultV
     };
-    // 下拉菜单项行高
-    this.ITEM_HEIGHT = ITEM_HEIGHT_CFG[props.size || "default"];
+    // 下拉菜单项行高，可通过 optionHeight 动态控制
+    this.ITEM_HEIGHT = optionHeight || ITEM_HEIGHT_CFG[props.size || "default"];
     // 可视区 dom 高度
     this.visibleDomHeight = this.ITEM_HEIGHT * ITEM_ELEMENT_NUMBER;
     // 滚动时重新渲染的 scrollTop 判断值，大于 reactDelta 则刷新下拉列表

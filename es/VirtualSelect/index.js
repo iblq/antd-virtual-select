@@ -309,7 +309,8 @@ function (_PureComponent) {
 
     var mode = props.mode,
         defaultValue = props.defaultValue,
-        _value = props.value;
+        _value = props.value,
+        optionHeight = props.optionHeight;
     _this.isMultiple = ["tags", "multiple"].includes(mode); // 设置默认 value
 
     var defaultV = _this.isMultiple ? [] : "";
@@ -319,9 +320,9 @@ function (_PureComponent) {
       filterChildren: null,
       // 筛选后的 options，优先显示，所以清除筛选后手动设为 null
       value: defaultV
-    }; // 下拉菜单项行高
+    }; // 下拉菜单项行高，可通过 optionHeight 动态控制
 
-    _this.ITEM_HEIGHT = ITEM_HEIGHT_CFG[props.size || "default"]; // 可视区 dom 高度
+    _this.ITEM_HEIGHT = optionHeight || ITEM_HEIGHT_CFG[props.size || "default"]; // 可视区 dom 高度
 
     _this.visibleDomHeight = _this.ITEM_HEIGHT * ITEM_ELEMENT_NUMBER; // 滚动时重新渲染的 scrollTop 判断值，大于 reactDelta 则刷新下拉列表
 
