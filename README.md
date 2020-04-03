@@ -97,3 +97,8 @@ const Example = () => {
 
 - feat:
   1. 新增 optionHeight 属性动态设置下拉列表选项的高度
+
+### 2020-03-31
+
+- fix:
+  1. 修复配置 notFoundContent 无效问题

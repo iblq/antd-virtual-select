@@ -344,18 +344,24 @@ class SuperSelect extends PureComponent {
         onDropdownVisibleChange={this.onDropdownVisibleChange}
         onDeselect={this.onDeselect}
         ref={ele => (this.select = ele)}
-        dropdownRender={menu => (
-          <DropDownWrap
-            {...{
-              startIndex,
-              endIndex,
-              allHeight: this.allHeight,
-              menu,
-              itemHeight: this.ITEM_HEIGHT
-            }}
-            ref={ele => (this.wrap = ele)}
-          />
-        )}
+        dropdownRender={menu => {
+          if (this.allList.length === 0) {
+            return <div style={{ padding: "5px 12px" }}>{notFoundContent}</div>;
+          }
+
+          return (
+            <DropDownWrap
+              {...{
+                startIndex,
+                endIndex,
+                allHeight: this.allHeight,
+                menu,
+                itemHeight: this.ITEM_HEIGHT
+              }}
+              ref={ele => (this.wrap = ele)}
+            />
+          );
+        }}
       >
         {this.allList}
       </Select>
