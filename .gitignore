@@ -9,3 +9,4 @@ package.lock
 es/
 lib/
 dist/
+.DS_Store

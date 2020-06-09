@@ -26,7 +26,6 @@ class SuperSelect extends PureComponent {
     super(props);
 
     const { mode, defaultValue, value, optionHeight } = props;
-
     this.isMultiple = ["tags", "multiple"].includes(mode);
 
     // 设置默认 value
@@ -38,7 +37,7 @@ class SuperSelect extends PureComponent {
       filterChildren: null, // 筛选后的 options，优先显示，所以清除筛选后手动设为 null
       value: defaultV
     };
-    // 下拉菜单项行高，可通过 optionHeight 动态控制
+    // 下拉菜单项行高
     this.ITEM_HEIGHT = optionHeight || ITEM_HEIGHT_CFG[props.size || "default"];
     // 可视区 dom 高度
     this.visibleDomHeight = this.ITEM_HEIGHT * ITEM_ELEMENT_NUMBER;
@@ -218,7 +217,9 @@ class SuperSelect extends PureComponent {
       const allHeight = this.allList.length * this.ITEM_HEIGHT || 100;
       // 下拉列表单独重新渲染
       const { startIndex, endIndex } = this.getStartAndEndIndex();
-      this.wrap && this.wrap.reactList(allHeight, startIndex, endIndex);
+      setTimeout(() => {
+        this.wrap && this.wrap.reactList(allHeight, startIndex, endIndex);
+      }, 0);
     }
   };
 
@@ -233,6 +234,8 @@ class SuperSelect extends PureComponent {
         this.setState({ filterChildren: null });
       });
     } else {
+      // 如果已有 value, 设置默认滚动位置
+      this.setDefaultScrollTop();
       // 设置下拉列表显示数据
       this.setSuperDrowDownMenu(visible);
     }
@@ -262,7 +265,6 @@ class SuperSelect extends PureComponent {
 
   onSearch = v => {
     const { showSearch, onSearch, filterOption, children } = this.props;
-
     if (showSearch && filterOption !== false) {
       // 须根据 filterOption（如有该自定义函数）手动 filter 搜索匹配的列表
       let filterChildren = null;
@@ -276,8 +278,14 @@ class SuperSelect extends PureComponent {
       this.setState(
         { filterChildren: v === "" ? null : filterChildren },
         () => {
-          // 搜索成功后需要重新设置列表的总高度
-          this.setSuperDrowDownMenu(true);
+          setTimeout(() => {
+            // 搜索后需要重置滚动位置到0，防止上次 scrollTop 位置无数据
+            if (filterChildren) {
+              this.scrollTop = 0;
+            }
+            // 搜索成功后需要重新设置列表的总高度
+            this.setSuperDrowDownMenu(true);
+          }, 0);
         }
       );
     }
@@ -288,6 +296,27 @@ class SuperSelect extends PureComponent {
     // 自定义过滤对应的 option 属性配置
     const filterProps = this.props.optionFilterProp || "value";
     return `${option.props[filterProps]}`.indexOf(v) >= 0;
+  };
+
+  setDefaultScrollTop = () => {
+    const { value } = this.state;
+    const { children } = this.props;
+
+    for (let i = 0; i < children.length; i++) {
+      const item = children[i];
+      const itemValue = item.props.value;
+      if (
+        itemValue === value ||
+        (Array.isArray(value) && value.includes(itemValue))
+      ) {
+        const targetScrollTop = i * this.ITEM_HEIGHT;
+
+        setTimeout(() => {
+          this.scrollEle.scrollTo(0, targetScrollTop);
+        }, 100);
+        return;
+      }
+    }
   };
 
   removeEvent = () => {
@@ -358,7 +387,9 @@ class SuperSelect extends PureComponent {
                 menu,
                 itemHeight: this.ITEM_HEIGHT
               }}
-              ref={ele => (this.wrap = ele)}
+              ref={ele => {
+                this.wrap = ele;
+              }}
             />
           );
         }}
