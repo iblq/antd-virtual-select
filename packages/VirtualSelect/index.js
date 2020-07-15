@@ -331,6 +331,7 @@ class SuperSelect extends PureComponent {
       dropdownStyle,
       optionLabelProp,
       notFoundContent,
+      dropdownClassName,
       ...props
     } = this.props;
 
@@ -367,7 +368,8 @@ class SuperSelect extends PureComponent {
         id={this.id}
         onSearch={this.onSearch}
         onChange={this.onChange}
-        dropdownClassName={this.dropdownClassName}
+        dropdownClassName={`${this.dropdownClassName} ${dropdownClassName ||
+          ""}`}
         optionLabelProp={optionLabelProp}
         dropdownStyle={dropdownStyle}
         onDropdownVisibleChange={this.onDropdownVisibleChange}
