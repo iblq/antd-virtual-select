@@ -12,6 +12,7 @@ npm i antd-virtual-select
 3. 对自定义列表项绑定原 Select 组件的各项方法和回调函数支持
 4. 同步使用 antd 组件下拉列表样式
 5. 同 antd select api
+6. 设置 `mode={Select.SECRET_COMBOBOX_MODE_DO_NOT_USE}` 属性可成为支持大数据渲染的 AutoComplete 组件
 
 ## [在线 demo](https://codesandbox.io/s/88vznl9lm2)
 
@@ -72,39 +73,17 @@ const Example = () => {
 
 ## Change Log
 
-### 2020-01-06
-
-- feat:
-  1. 更新构建配置
-
-### 2020-01-20
-
-- fix:
-  1. 修复 Option 组件添加 style={xxx} 样式无效问题
-
-### 2020-03-02
-
-- fix:
-  1. 修复异步加载数据时下拉列表高度固定 100px 问题
-  2. onDropdownVisibleChange 回调函数未触发问题
-
-### 2020-03-17
-
-- fix:
-  1. 输入筛选条件直接 blur 后下拉列表没有重置为全部列表
-
-### 2020-03-31
-
-- feat:
-  1. 新增 optionHeight 属性动态设置下拉列表选项的高度
-
-### 2020-03-31
-
-- fix:
-  1. 修复配置 notFoundContent 无效问题
-
 ### 2020-06-09
 
 - fix:
   1. 修复滚动一定高度后搜索，搜索输入情况后数据列表显示空白问题
   2. 展开下拉列表默认滚动到当前选中项位置
+
+### 2020-07-15
+
+- fix:
+
+  1. 修复添加 dropdownClassName 属性无效问题
+
+- feat:
+  1. 设置 `mode={Select.SECRET_COMBOBOX_MODE_DO_NOT_USE}` 属性可成为支持大数据渲染的 AutoComplete 组件
