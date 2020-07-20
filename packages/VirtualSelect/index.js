@@ -79,9 +79,7 @@ class SuperSelect extends PureComponent {
       // 更新时设置默认 value
       let defaultV = this.isMultiple ? [] : "";
       defaultV = value || defaultValue || defaultV;
-      this.setState({ value: defaultV }, () => {
-        this.scrollToValue();
-      });
+      this.setState({ value: defaultV });
     }
   }
 
@@ -90,18 +88,18 @@ class SuperSelect extends PureComponent {
   }
 
   // value 存在时需要滚动到 value 所在位置
-  scrollToValue = () => {
-    if (!this.scrollEle) return;
-    const { children } = this.props;
-    const { value } = this.state;
-    const index = children.findIndex(item => item.key === value) || 0;
+  // scrollToValue = () => {
+  //   if (!this.scrollEle) return;
+  //   const { children } = this.props;
+  //   const { value } = this.state;
+  //   const index = children.findIndex(item => item.key === value) || 0;
 
-    const y = this.ITEM_HEIGHT * index;
-    this.scrollEle.scrollTop = y;
-    setTimeout(() => {
-      this.forceUpdate();
-    }, 0);
-  };
+  //   const y = this.ITEM_HEIGHT * index;
+  //   this.scrollEle.scrollTop = y;
+  //   setTimeout(() => {
+  //     this.forceUpdate();
+  //   }, 0);
+  // };
 
   getItemStyle = i => ({
     position: "absolute",

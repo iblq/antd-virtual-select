@@ -74,20 +74,6 @@ function (_PureComponent) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SuperSelect).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_this), "scrollToValue", function () {
-      if (!_this.scrollEle) return;
-      var children = _this.props.children;
-      var value = _this.state.value;
-      var index = children.findIndex(function (item) {
-        return item.key === value;
-      }) || 0;
-      var y = _this.ITEM_HEIGHT * index;
-      _this.scrollEle.scrollTop = y;
-      setTimeout(function () {
-        _this.forceUpdate();
-      }, 0);
-    });
-
     _defineProperty(_assertThisInitialized(_this), "getItemStyle", function (i) {
       return {
         position: "absolute",
@@ -389,8 +375,6 @@ function (_PureComponent) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var _this3 = this;
-
       var _this$props3 = this.props,
           mode = _this$props3.mode,
           defaultValue = _this$props3.defaultValue,
@@ -411,8 +395,6 @@ function (_PureComponent) {
         defaultV = value || defaultValue || defaultV;
         this.setState({
           value: defaultV
-        }, function () {
-          _this3.scrollToValue();
         });
       }
     }
@@ -421,11 +403,22 @@ function (_PureComponent) {
     value: function componentWillUnmount() {
       this.removeEvent();
     } // value 存在时需要滚动到 value 所在位置
+    // scrollToValue = () => {
+    //   if (!this.scrollEle) return;
+    //   const { children } = this.props;
+    //   const { value } = this.state;
+    //   const index = children.findIndex(item => item.key === value) || 0;
+    //   const y = this.ITEM_HEIGHT * index;
+    //   this.scrollEle.scrollTop = y;
+    //   setTimeout(() => {
+    //     this.forceUpdate();
+    //   }, 0);
+    // };
 
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var _this$props4 = this.props,
           dropdownStyle = _this$props4.dropdownStyle,
@@ -471,10 +464,10 @@ function (_PureComponent) {
         onDropdownVisibleChange: this.onDropdownVisibleChange,
         onDeselect: this.onDeselect,
         ref: function ref(ele) {
-          return _this4.select = ele;
+          return _this3.select = ele;
         },
         dropdownRender: function dropdownRender(menu) {
-          if (_this4.allList.length === 0) {
+          if (_this3.allList.length === 0) {
             return _react["default"].createElement("div", {
               style: {
                 padding: "5px 12px"
@@ -485,12 +478,12 @@ function (_PureComponent) {
           return _react["default"].createElement(_DropDownWrap["default"], _extends({
             startIndex: startIndex,
             endIndex: endIndex,
-            allHeight: _this4.allHeight,
+            allHeight: _this3.allHeight,
             menu: menu,
-            itemHeight: _this4.ITEM_HEIGHT
+            itemHeight: _this3.ITEM_HEIGHT
           }, {
             ref: function ref(ele) {
-              _this4.wrap = ele;
+              _this3.wrap = ele;
             }
           }));
         }

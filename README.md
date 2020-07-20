@@ -87,3 +87,8 @@ const Example = () => {
 
 - feat:
   1. 设置 `mode={Select.SECRET_COMBOBOX_MODE_DO_NOT_USE}` 属性可成为支持大数据渲染的 AutoComplete 组件
+
+### 2020-07-20
+
+- fix:
+  1. [#23 Form 表单运用场景下,会出现下拉滚动内容留白,下一次滚动会定位到上次选择内容位置](https://github.com/iblq/antd-virtual-select/issues/23)
