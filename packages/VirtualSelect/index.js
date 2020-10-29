@@ -280,6 +280,7 @@ class SuperSelect extends PureComponent {
             // 搜索后需要重置滚动位置到0，防止上次 scrollTop 位置无数据
             if (filterChildren) {
               this.scrollTop = 0;
+              this.scrollEle.scrollTo(0, 0);
             }
             // 搜索成功后需要重新设置列表的总高度
             this.setSuperDrowDownMenu(true);

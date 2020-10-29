@@ -25,7 +25,7 @@ npm i antd-virtual-select
 基本使用同 antd Select，只是使用 SuperSelect 代替 Select
 
 ```js
-import SuperSelect from "@nuo-common/cloudjz-virtual-select";
+import SuperSelect from '@nuo-common/cloudjz-virtual-select';
 
 const Option = SuperSelect.Option;
 
@@ -34,7 +34,7 @@ const Example = () => {
 
   for (let i = 0; i < 100000; i++) {
     children.push(
-      <Option value={i + ""} key={i}>
+      <Option value={i + ''} key={i}>
         {i}
       </Option>
     );
@@ -72,6 +72,11 @@ const Example = () => {
 > [demo](https://codesandbox.io/s/88vznl9lm2)
 
 ## Change Log
+
+### 2020-10-19
+
+- fix:
+  1. [#28 滚动一定高度后搜索下拉不出来。](https://github.com/iblq/antd-virtual-select/issues/28)
 
 ### 2020-06-09
 
