@@ -5,6 +5,10 @@ npm i antd-virtual-select
 
 ```
 
+## 说明
+
+由于时间、业务需求关系，暂不维护和修复bug，代码逻辑并不复杂，后续仅供参考、讨论实现思路
+
 ## 功能特性
 
 1. 使用 antd Select `dropdownRender` 方法自定义原组件下拉列表部分
